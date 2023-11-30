@@ -136,6 +136,7 @@ func (o *Optimizer) Optimize(seq dag.Seq) (dag.Seq, error) {
 	if err != nil {
 		return nil, err
 	}
+	seq = insertDemand(seq)
 	seq = removePassOps(seq)
 	return seq, nil
 }
