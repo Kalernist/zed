@@ -184,6 +184,11 @@ type (
 
 	// Leaf sources
 
+	DefaultScan struct {
+		Kind    string        `json:"kind" unpack:""`
+		Filter  Expr          `json:"filter"`
+		SortKey order.SortKey `json:"sort_key"`
+	}
 	FileScan struct {
 		Kind    string        `json:"kind" unpack:""`
 		Path    string        `json:"path"`
@@ -248,6 +253,7 @@ var CommitMetas = map[string]struct{}{
 	"vectors":    {},
 }
 
+func (*DefaultScan) OpNode()    {}
 func (*FileScan) OpNode()       {}
 func (*HTTPScan) OpNode()       {}
 func (*PoolScan) OpNode()       {}
